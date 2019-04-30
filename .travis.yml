@@ -1,0 +1,14 @@
+language: php
+php:
+- '7.0'
+env:
+  global:
+  - secure: KZSei7tAjH/ra0srwA9em2zNy5tMpE7FjKz/qROEA34Pkrzmi1CsIsWJqwj3j+3+/8RYp0Rbb9MG1WBCvbXB2lLQUEl/qzwoUj1xkzbiPMdZTHzYRICLCsfH4MgRGuktCG1p8A5AHabAzoowI/iTbB39bbyfO1SQ8AKnlbfAPCL+XwGBRITBEFE2i3mvN2mMbJaDig4tY+e53/USqn3qC2LE4Eg+Wqbj2frqWJTr0Op3Vb5QiBUHSY2PfVLfe59cFQMAIicG+P+mBauKkSj9H9hUE0uraqw99sPed1TWfDPxYbxuJVHMCYg+rlVvznrf6Mlsu7++QG4wK0WSwWaAlwOPeFITfv/kyErJ6llevh/8rvSFnSPulCrCRfyeRohvfPDUWqFNybBDuRadYwNKV4Qyk27n8Bjf9ag4WBSpscN4lpItuoKJyZZ0cppnuqYhj1hTvewT+wF6if/MVyjHNvmoueIe+BmOfdezm/62AVOR6HKcz5/115IdVLjQ5JESvIFzQ9EBM/fISMRUd2cA02nqmY/7/zke0fwb9iIFi//zG8ONrwTOc+I8mZ9+XfgJQBS2YeQ8XQhkhznl6E7a+NwIWFMxmZ3bybmuuzh66OngPukgKZkMCZKp0zNmeT0EM3QR5yR/hi/or75KX/LVJmmaEsz4PCcAZjy4sMhZBzk=
+script:
+- export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash scripts/deploy/moodle.sh
+  on:
+    all_branches: true
