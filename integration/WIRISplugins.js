@@ -1853,14 +1853,6 @@ com.wiris.system.JsDOMUtils.getComputedStyle = function(element) {
 	if(element.currentStyle) return element.currentStyle;
 	return document.defaultView.getComputedStyle(element,null);
 }
-com.wiris.system.JsDOMUtils.isStyleRuleExists = function(selector) {
-	var testComponent = js.Lib.document.createElement("div");
-	testComponent.className = "wrsUI_app";
-	js.Lib.document.body.appendChild(testComponent);
-	var result = com.wiris.system.JsDOMUtils.getComputedStyleProperty(testComponent,"transition") != "all 0s ease 0s";
-	js.Lib.document.body.removeChild(testComponent);
-	return result;
-}
 com.wiris.system.JsDOMUtils.getComputedStyleProperty = function(element,name) {
 	var value;
 	if(document.defaultView && document.defaultView.getComputedStyle) {
@@ -2182,6 +2174,18 @@ com.wiris.system.JsDOMUtils.trapFocus = function(disabledFocusContainer,focusabl
 			e.stopPropagation();
 		} else lastScroll = com.wiris.system.JsDOMUtils.getWindowScroll();
 	}));
+	var focusedElement = js.Lib.document.activeElement;
+	if(!com.wiris.system.JsDOMUtils.isDescendant(focusableContainer,focusedElement)) {
+		com.wiris.system.JsDOMUtils.setWindowScroll(lastScroll);
+		var focusableElements = com.wiris.system.JsDOMUtils.getFocusableElements(js.Lib.document.body);
+		var focusedElementIndex = 0;
+		while(focusedElementIndex < focusableElements.length) {
+			if(focusableElements[focusedElementIndex] == focusedElement) break;
+			++focusedElementIndex;
+		}
+		var alternative = com.wiris.system.JsDOMUtils.findFocusableAlternative(focusableElements,disabledFocusContainer,focusableContainer,focusedElementIndex,1);
+		if(alternative != null) alternative.focus();
+	}
 	return descriptor;
 }
 com.wiris.system.JsDOMUtils.findFocusableAlternative = function(focusableElements,disabledFocusContainer,focusableContainer,focusedElementIndex,direction,stopOnIndex) {
@@ -3783,7 +3787,7 @@ js.XMLHttpRequest = window.XMLHttpRequest?XMLHttpRequest:window.ActiveXObject?fu
 com.wiris.js.JsPluginViewer.USE_CREATE_IMAGE = 1;
 com.wiris.js.JsPluginViewer.DEBUG = false;
 com.wiris.js.JsPluginViewer.TECH = "@param.js.tech.discover@";
-com.wiris.js.JsPluginViewer.VERSION = "7.13.0.1419";
+com.wiris.js.JsPluginViewer.VERSION = "7.13.1.1420";
 com.wiris.system.JsDOMUtils.TOUCHHOLD_MOVE_MARGIN = 10;
 com.wiris.system.JsDOMUtils.browser = new com.wiris.system.JsBrowser();
 com.wiris.system.JsDOMUtils.initialized = false;
