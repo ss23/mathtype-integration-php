@@ -1084,8 +1084,8 @@ com.wiris.js.JsPluginViewer.prototype = {
 		data += "&metrics=true&centerbaseline=false&mml=" + StringTools.urlEncode(mml);
 		data += "&lang=" + this.lang;
 		if(this.zoom != 1) data += "&zoom=" + this.zoom;
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 917, className : "com.wiris.js.JsPluginViewer", methodName : "callService"});
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 919, className : "com.wiris.js.JsPluginViewer", methodName : "callService"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 920, className : "com.wiris.js.JsPluginViewer", methodName : "callService"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 922, className : "com.wiris.js.JsPluginViewer", methodName : "callService"});
 		con.open("POST",url,false);
 		con.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=utf-8");
 		con.send(data);
@@ -1097,8 +1097,8 @@ com.wiris.js.JsPluginViewer.prototype = {
 		var url = (this.absoluteURL.length > 0?this.absoluteURL:this.baseURL + this.localpath) + "/service" + this.extension;
 		var data = "service=latex2mathml";
 		data += "&latex=" + StringTools.urlEncode(latex);
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 851, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 853, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 854, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 856, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
 		var onloadFunc = function(e) {
 			try {
 				var mathml = haxe.Json.parse(con.responseText).result.text;
@@ -1120,7 +1120,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 				e.target.wiris.callbackFunc(mathmlSpan);
 				_g.parseElement(mathmlSpan,asynchronously);
 			} catch( e1 ) {
-				if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("LatexToMathml call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 879, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
+				if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("LatexToMathml call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 882, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
 			}
 		};
 		con.open("POST",url,asynchronously);
@@ -1131,7 +1131,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 		con.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=utf-8");
 		con.onload = onloadFunc;
 		con.onerror = function(e) {
-			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("LatexToMathml call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 892, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
+			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("LatexToMathml call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 895, className : "com.wiris.js.JsPluginViewer", methodName : "latexToMathml"});
 		};
 		con.send(data);
 	}
@@ -1158,8 +1158,8 @@ com.wiris.js.JsPluginViewer.prototype = {
 		url = (this.absoluteURL.length > 0?this.absoluteURL:this.baseURL + this.localpath) + "/showimage" + this.extension;
 		if(new com.wiris.js.JsBrowser().isIE()) data = "?formula=" + md5 + "&lang=" + this.lang + "&useragent=IE"; else data = "?formula=" + md5 + "&lang=" + this.lang;
 		data += "&version=" + com.wiris.js.JsPluginViewer.VERSION;
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 729, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("GET:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 731, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 732, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("GET:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 734, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
 		con.open("GET",url + data,asynchronously);
 		con.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=utf-8");
 		var onloadFunc = function(e) {
@@ -1179,7 +1179,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 				var scaledWitdh = result.width * scaleDpi | 0;
 				var scaledBaseLine = result.baseline * scaleDpi | 0;
 				if(result.height > 0) {
-					if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(_g.calculateAlignment(height,baseline),{ fileName : "JsPluginViewer.hx", lineNumber : 755, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
+					if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(_g.calculateAlignment(height,baseline),{ fileName : "JsPluginViewer.hx", lineNumber : 758, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
 					e1.target.wiris.img.style.verticalAlign = "-" + _g.calculateAlignment(scaledHeight,scaledBaseLine) + "px";
 					e1.target.wiris.img.style.height = "" + scaledHeight + "px";
 					e1.target.wiris.img.style.width = "" + scaledWitdh + "px";
@@ -1223,7 +1223,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 				con.wiris.container = container;
 				con.onload = onloadFunc1;
 				con.onerror = function(e1) {
-					if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("ShowImage call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 819, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
+					if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("ShowImage call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 822, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
 				};
 				con.send(data);
 			} else getResultFunc(e);
@@ -1237,7 +1237,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 		con.wiris.asynchronously = asynchronously;
 		con.onload = onloadFunc;
 		con.onerror = function(e) {
-			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("ShowImage call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 839, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
+			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("ShowImage call failed!",{ fileName : "JsPluginViewer.hx", lineNumber : 842, className : "com.wiris.js.JsPluginViewer", methodName : "callShowimage"});
 		};
 		con.send(null);
 	}
@@ -1254,8 +1254,8 @@ com.wiris.js.JsPluginViewer.prototype = {
 		data = "metrics=true&centerbaseline=false&mml=" + StringTools.urlEncode(mml);
 		data += "&lang=" + this.lang;
 		if(this.zoom != 1) data += "&zoom=" + this.zoom;
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 658, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 660, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Calling: " + url,{ fileName : "JsPluginViewer.hx", lineNumber : 661, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("POST:" + data,{ fileName : "JsPluginViewer.hx", lineNumber : 663, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
 		con.open("POST",url,false);
 		con.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=utf-8");
 		con.send(data);
@@ -1264,7 +1264,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 		if(i >= 0) {
 			var scaleDpi = 1;
 			var h = this.queryToParams(HxOverrides.substr(s,i + 1,null));
-			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(h.get("formula"),{ fileName : "JsPluginViewer.hx", lineNumber : 670, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
+			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(h.get("formula"),{ fileName : "JsPluginViewer.hx", lineNumber : 673, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
 			if(h.exists("dpi")) scaleDpi = this.zoom * (Std.parseInt(h.get("dpi")) / 96);
 			baseline = Std.parseInt(h.get("cb")) / scaleDpi | 0;
 			height = Std.parseInt(h.get("ch")) / scaleDpi | 0;
@@ -1273,7 +1273,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 		}
 		img.src = con.responseText;
 		if(height > 0) {
-			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(this.calculateAlignment(height,baseline),{ fileName : "JsPluginViewer.hx", lineNumber : 681, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
+			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(this.calculateAlignment(height,baseline),{ fileName : "JsPluginViewer.hx", lineNumber : 684, className : "com.wiris.js.JsPluginViewer", methodName : "callCreateImage"});
 			img.style.verticalAlign = "-" + this.calculateAlignment(height,baseline) + "px";
 			img.style.height = "" + height + "px";
 			img.style.width = "" + width + "px";
@@ -1301,12 +1301,12 @@ com.wiris.js.JsPluginViewer.prototype = {
 		} else return com.wiris.js.JsPluginViewer.TECH;
 	}
 	,processMathML: function(mml,container,asynchronously,callbackFunc) {
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(mml,{ fileName : "JsPluginViewer.hx", lineNumber : 603, className : "com.wiris.js.JsPluginViewer", methodName : "processMathML"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(mml,{ fileName : "JsPluginViewer.hx", lineNumber : 606, className : "com.wiris.js.JsPluginViewer", methodName : "processMathML"});
 		var img = js.Lib.document.createElement("img");
 		if(this.performanceenabled == null) this.performanceenabled = this.isPerformanceEnabled();
 		if(this.mode == com.wiris.js.JsPluginViewer.USE_CREATE_IMAGE && this.performanceenabled) this.callShowimage(container,mml,img,asynchronously,callbackFunc); else if(this.mode == com.wiris.js.JsPluginViewer.USE_CREATE_IMAGE && !this.performanceenabled) this.callCreateImage(mml,img); else img.src = this.baseURL + this.localpath + "/showimage" + this.extension + "?mml=" + StringTools.urlEncode(mml);
 		container.appendChild(img);
-		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(img.src,{ fileName : "JsPluginViewer.hx", lineNumber : 617, className : "com.wiris.js.JsPluginViewer", methodName : "processMathML"});
+		if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace(img.src,{ fileName : "JsPluginViewer.hx", lineNumber : 620, className : "com.wiris.js.JsPluginViewer", methodName : "processMathML"});
 	}
 	,getMathML_IE7: function(mathNode0) {
 		var mathml = "";
@@ -1360,7 +1360,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 		var mathml = null;
 		var browser = new com.wiris.js.JsBrowser();
 		if(browser.getBrowser() == "Explorer" && (browser.getVersion() == "6" || browser.getVersion() == "7") && navigator.appVersion.indexOf("Trident") == -1) {
-			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Is ie7",{ fileName : "JsPluginViewer.hx", lineNumber : 472, className : "com.wiris.js.JsPluginViewer", methodName : "replaceNodes"});
+			if(com.wiris.js.JsPluginViewer.DEBUG) haxe.Log.trace("Is ie7",{ fileName : "JsPluginViewer.hx", lineNumber : 475, className : "com.wiris.js.JsPluginViewer", methodName : "replaceNodes"});
 			mathml = this.getMathML_IE7(mathNode);
 		}
 		var container = js.Lib.document.createElement("span");
@@ -1526,11 +1526,12 @@ com.wiris.js.JsPluginViewer.prototype = {
 	}
 	,getMathMLPositionsAtElementAndChildren: function(element,mathmlPositions) {
 		this.getMathMLPositionsAtNode(element,mathmlPositions);
-		if(element.childNodes.length > 0) {
-			var _g1 = 0, _g = element.childNodes.length;
+		var childNodes = Array.from(element.childNodes);
+		if(childNodes.length > 0) {
+			var _g1 = 0, _g = childNodes.length;
 			while(_g1 < _g) {
 				var i = _g1++;
-				var child = element.childNodes[i];
+				var child = childNodes[i];
 				this.getMathMLPositionsAtElementAndChildren(child,mathmlPositions);
 			}
 		}
@@ -1538,7 +1539,7 @@ com.wiris.js.JsPluginViewer.prototype = {
 	,parseSafeMathMLElement: function(element,asynchronously,callbackFunc) {
 		if(!this.ready) throw "Document is not loaded.";
 		var mathmlPositions = [];
-		this.getMathMLPositionsAtElementAndChildren(js.Lib.document,mathmlPositions);
+		this.getMathMLPositionsAtElementAndChildren(element,mathmlPositions);
 		var _g1 = 0, _g = mathmlPositions.length;
 		while(_g1 < _g) {
 			var i = _g1++;
