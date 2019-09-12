@@ -2139,6 +2139,18 @@ com.wiris.system.JsDOMUtils.getMousePositionImpl = function(target,e,elementScro
 	position[1] = e.clientY - com.wiris.system.JsDOMUtils.getTop(target) - border + elementScroll[1];
 	return position;
 }
+com.wiris.system.JsDOMUtils.getMousePagePosition = function(target,e) {
+	var pagePosition = new Array();
+	pagePosition[0] = e.pageX;
+	pagePosition[1] = e.pageY;
+	return pagePosition;
+}
+com.wiris.system.JsDOMUtils.getScrollPosition = function(target,e) {
+	var elementScroll = new Array();
+	elementScroll[0] = target.scrollLeft;
+	elementScroll[1] = target.scrollTop;
+	return elementScroll;
+}
 com.wiris.system.JsDOMUtils.inFixedParent = function(element) {
 	while(element != null) {
 		if(com.wiris.system.JsDOMUtils.getComputedStyleProperty(element,"position") == "fixed") return true;
