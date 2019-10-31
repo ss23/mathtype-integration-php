@@ -1690,9 +1690,10 @@ com.wiris.system.JsBrowser = $hxClasses["com.wiris.system.JsBrowser"] = function
 	this.addOS("navigator.userAgent","iPad","iOS");
 	this.addOS("navigator.userAgent","Android","Android");
 	this.addOS("navigator.platform","Linux","Linux");
+	if(window.matchMedia != null) this.hasCoarsePointer = window.matchMedia("(any-pointer: coarse)").matches; else this.hasCoarsePointer = false;
 	this.setBrowser();
 	this.setOS();
-	this.setTouchable();
+	this.touchable = this.isIOS() || this.isAndroid();
 };
 com.wiris.system.JsBrowser.__name__ = ["com","wiris","system","JsBrowser"];
 com.wiris.system.JsBrowser.prototype = {
@@ -1706,7 +1707,7 @@ com.wiris.system.JsBrowser.prototype = {
 		return this.os == "Mac";
 	}
 	,isIOS: function() {
-		return this.os == "iOS";
+		return this.os == "iOS" || this.os == "Mac" && this.hasCoarsePointer;
 	}
 	,isFF: function() {
 		return this.browser == "Firefox";
@@ -1737,13 +1738,6 @@ com.wiris.system.JsBrowser.prototype = {
 		var index = str.indexOf(search);
 		if(index == -1) return null;
 		return "" + Std.parseFloat(HxOverrides.substr(str,index + search.length + 1,null));
-	}
-	,setTouchable: function() {
-		if(this.isIOS() || this.isAndroid()) {
-			this.touchable = true;
-			return;
-		}
-		this.touchable = false;
 	}
 	,setOS: function() {
 		var i = HxOverrides.iter(this.dataOS);
@@ -1790,6 +1784,7 @@ com.wiris.system.JsBrowser.prototype = {
 		b.identity = identity;
 		this.dataBrowser.push(b);
 	}
+	,hasCoarsePointer: null
 	,touchable: null
 	,os: null
 	,ver: null
@@ -2344,6 +2339,9 @@ com.wiris.system.JsDOMUtils.elementIsBefore = function(elementA,elementB) {
 		++i;
 	}
 	return false;
+}
+com.wiris.system.JsDOMUtils.elementIsVisible = function(element) {
+	return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
 }
 com.wiris.system.JsDOMUtils.getElementPath = function(element) {
 	var path = new Array();
