@@ -2305,9 +2305,10 @@ com.wiris.system.JsDOMUtils.trapFocus = function(disabledFocusContainer,focusabl
 }
 com.wiris.system.JsDOMUtils.findFocusableAlternative = function(focusableElements,disabledFocusContainer,focusableContainer,focusedElementIndex,direction,stopOnIndex) {
 	if(stopOnIndex == null) stopOnIndex = -100;
+	if(focusedElementIndex == 0 && stopOnIndex == -100 && direction == -1) return com.wiris.system.JsDOMUtils.findFocusableAlternative(focusableElements,disabledFocusContainer,focusableContainer,0,1,focusableElements.length - 1);
 	var originalFocusedElementIndex = focusedElementIndex;
 	focusedElementIndex += direction;
-	while(focusedElementIndex >= 0 && focusedElementIndex < focusableElements.length && com.wiris.system.JsDOMUtils.isDescendant(disabledFocusContainer,focusableElements[focusedElementIndex]) && !com.wiris.system.JsDOMUtils.isDescendant(focusableContainer,focusableElements[focusedElementIndex])) {
+	while(focusedElementIndex >= 0 && focusedElementIndex < focusableElements.length && com.wiris.system.JsDOMUtils.isDescendant(disabledFocusContainer,focusableElements[focusedElementIndex]) && (!com.wiris.system.JsDOMUtils.isDescendant(focusableContainer,focusableElements[focusedElementIndex]) || focusableElements[focusedElementIndex].offsetParent == null)) {
 		focusedElementIndex += direction;
 		if(focusedElementIndex == stopOnIndex) return null;
 	}
